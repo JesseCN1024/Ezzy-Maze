@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ezzy Maze</title>
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div
+      class="menu_bg bg-dark d-flex justify-content-center align-items-center"
+    >
+      <div class="menu text-white border border-white border-1 d-flex">
+        <div class="menu_interaction"></div>
+        <div
+          class="menu_ui d-flex justify-content-center align-items-center flex-column text-white"
+        >
+          <h1 class="mb-5">Ezzy Maze</h1>
+          <a
+            href="game.html"
+            class="btn btn-dark border border-white py-3 px-5 fs-3"
+            >Play Game</a
+          >
+          <!-- Gamemode -->
+          <div class="form-check d-flex align-items-center mt-5 d-none" id="checkbox">
+            <input
+              type="checkbox"
+              class="hard-check form-check-input bg-transparent p-3"
+              id="check"
+            />
+            <label
+              for="check"
+              class="form-check-label fs-4 text-danger fw-bold ms-2 "
+              >Hard Mode</label
+            >
+          </div>
+          <!-- Controls Instruction -->
+          <p class="fs-4 fw-bold mt-5">Controls:</p>
+          <div class="text-center">
+            <div
+              class="box menu_box d-inline-block bg-transparent text-center border border-white rounded-1"
+            >
+              W
+            </div>
+            <div class="d-flex mt-2">
+              <div
+                class="box menu_box bg-transparent text-center border border-white rounded-1"
+              >
+                A
+              </div>
+              <div
+                class="box menu_box bg-transparent text-center border border-white rounded-1 mx-2"
+              >
+                S
+              </div>
+              <div
+                class="box menu_box bg-transparent text-center border border-white rounded-1"
+              >
+                D
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Menu_interaction -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    <script>
+
+      const { Engine, World, Render, Runner, Body, Bodies, Events } = Matter;
+      const engine = Engine.create();
+      const { world } = engine;
+      engine.world.gravity.y = 0;
+
+      const width = document.querySelector(".menu_interaction").offsetWidth;
+      const height = document.querySelector(".menu_interaction").offsetHeight;
+      // show content
+      const render = Render.create({
+        element: document.querySelector(".menu_interaction"), // where to add canvas
+        engine: engine,
+        options: {
+          width,
+          height,
+          wireframes: true,
+        },
+      });
+
+      Render.run(render);
+      Runner.run(Runner.create(), engine);
+
+      const shape = Bodies.circle(
+        Math.random() * ((width * 3) / 5) + width / 5,
+        height / 6,
+        20,
+        20
+      );
+      const goal = Bodies.rectangle(width - 60, height - 60, 60, 60);
+      World.add(world, shape);
+      World.add(world, goal);
+      const boundaries = [
+        Bodies.rectangle(width / 2, 0, width, 10, { isStatic: true }),
+        Bodies.rectangle(width / 2, height, width, 10, { isStatic: true }),
+        Bodies.rectangle(0, height / 2, 10, height, { isStatic: true }),
+        Bodies.rectangle(width, height / 2, 10, height, { isStatic: true }),
+      ];
+
+      const walls = [
+        Bodies.rectangle(
+          width / 4,
+          Math.random() * (height - (height / 5) * 2) + height / 5,
+          width / 2,
+          10,
+          { isStatic: true }
+        ),
+        Bodies.rectangle(
+          (width * 3) / 4,
+          Math.random() * (height - (height / 5) * 2) + height / 5,
+          width / 2,
+          10,
+          { isStatic: true }
+        ),
+      ];
+
+      World.add(world, boundaries);
+      World.add(world, walls);
+      const velocity = 5;
+      document.addEventListener("keydown", (event) => {
+        const { x, y } = shape.velocity; // Body obj
+        if (event.keyCode === 87) {
+          //W
+          // Move up -> y < 0
+          Body.setVelocity(shape, { x, y: y - velocity }); // destructuring obj
+        }
+        if (event.keyCode === 83) {
+          //S
+          Body.setVelocity(shape, { x, y: y + velocity });
+        }
+        if (event.keyCode === 65) {
+          //A
+          Body.setVelocity(shape, { x: x - velocity, y });
+        }
+        if (event.keyCode === 68) {
+          //D
+          Body.setVelocity(shape, { x: x + velocity, y });
+        }
+      });
+    </script>
+  </body>
+</html>

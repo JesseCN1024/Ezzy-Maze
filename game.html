@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Template-JS</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="gamebar text-white d-flex align-items-center">
+      <p class="gamebar_level text-white fw-bold m-0 me-3 fs-5">Level 1</p>
+      <p class="gamebar_time text-white fw-bold m-0 me-3 fs-5">Time Left: 12</p>
+      <a
+        href="index.html"
+        class="game_back btn btn-dark border border-white text-white"
+        >Back</a
+      >
+    </div>
+
+    <div
+      class="result_bg d-flex align-items-center justify-content-center d-none"
+    >
+      <div
+        class="result text-white border border-white border-1 rounded-2 d-flex justify-content-center align-items-center flex-column p-5"
+      >
+        <h3 class="p-1">Level Completed!</h3>
+        <p class="fs-4 p-3">Next Level: 2</p>
+        <a
+          class="result_next btn btn-dark border border-white text-white fs-3 mb-3"
+          >Next Level</a
+        >
+        <a
+          href="index.html"
+          class="result_back btn btn-dark border border-white text-white fs-5"
+          >Main Menu</a
+        >
+      </div>
+    </div>
+
+    <script></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    <script src="game.js"></script>
+  </body>
+</html>

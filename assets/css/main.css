@@ -1,0 +1,72 @@
+body {
+  background-color: #6b6b70;
+  box-sizing: border-box;
+}
+.menu_bg {
+  width: 100vw;
+  height: 100vh;
+}
+.menu {
+  width: 1000px;
+  height: 700px;
+  position: absolute;
+}
+.menu_interaction {
+  flex-basis: 50%;
+}
+.menu_interaction-canvas {
+  position: absolute;
+}
+.menu_ui {
+  flex: 1;
+}
+.menu_ui h1 {
+  font-size: 4rem;
+}
+.menu_w {
+  flex: 1;
+}
+.menu_box {
+  padding: 20px;
+  flex: 1;
+}
+canvas {
+  background-color: #212529 !important;
+}
+
+.gamebar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.result_bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.result {
+  min-width: 350px;
+}
+
+/*------------FOR RESPONSIVE--------- */
+/* Mobile and Tablet */
+@media (max-width: 991px) {
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 991px) {
+}
+
+/* PC and low resolution PC */
+@media (min-width: 992px) {
+}
+
+/* Low resolution PC */
+@media (min-width: 992px) and (max-width: 1199px) {
+}
+
+/* Tablet and PC */
+@media (min-width: 768px) {
+}
